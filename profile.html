@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Profile - FC Real Banglore</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --accent: #f59e0b;
+            --bg: #0b1329;
+            --card-bg: #162038;
+            --stat-bg: #0d162d;
+            --text: #ffffff;
+            --text-muted: #8e9bb0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid #1f2d4d;
+        }
+
+        /* Navigation Bar */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #1f2d4d;
+            padding-bottom: 15px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link.active, .nav-link:hover {
+            color: var(--text);
+            background: var(--secondary);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #1f2d4d;
+        }
+
+        .jersey-badge {
+            width: 90px;
+            height: 90px;
+            border-radius: 16px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 3px solid var(--secondary);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--secondary);
+            flex-shrink: 0;
+        }
+
+        .player-meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .player-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .player-role {
+            font-size: 1rem;
+            color: var(--secondary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .club-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: var(--stat-bg);
+            border-radius: 12px;
+            padding: 20px 10px;
+            text-align: center;
+            border: 1px solid #1a2744;
+        }
+
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .info-card {
+            background: var(--stat-bg);
+            border-radius: 12px;
+            padding: 15px 20px;
+            border: 1px solid #1a2744;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .info-value {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        @media (max-width: 600px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Navigation back to Club Site -->
+        <nav class="nav-tabs">
+            <!-- Change 'index.html' or add full URL of main club website -->
+            <a href="https://fc-real-banglore.netlify.app" class="nav-link">⬅ Back to Club</a>
+            <a href="https://cr7-fc-real-banglore.netlify.app" class="nav-link active">My Profile</a>
+        </nav>
+
+        <header class="profile-header">
+            <div class="jersey-badge" id="playerJersey">#</div>
+            <div class="player-meta">
+                <h1 class="player-name" id="playerName">Loading...</h1>
+                <span class="player-role" id="playerRole">...</span>
+                <span class="club-name">FC Real Banglore</span>
+            </div>
+        </header>
+
+        <div class="section-title">Season Statistics</div>
+        <section class="stats-grid" id="statsGrid">
+            <div class="stat-card"><div class="stat-value">...</div><div class="stat-label">Goals</div></div>
+            <div class="stat-card"><div class="stat-value">...</div><div class="stat-label">Tackles</div></div>
+            <div class="stat-card"><div class="stat-value">...</div><div class="stat-label">Nutmegs</div></div>
+            <div class="stat-card"><div class="stat-value">...</div><div class="stat-label">Penalties</div></div>
+        </section>
+
+        <div class="section-title">Player Details</div>
+        <section class="info-grid" id="infoGrid">
+            <div class="info-card"><span class="info-label">Preferred Foot</span><span class="info-value">...</span></div>
+            <div class="info-card"><span class="info-label">Appearances</span><span class="info-value">...</span></div>
+            <div class="info-card"><span class="info-label">Assists</span><span class="info-value">...</span></div>
+            <div class="info-card"><span class="info-label">Joined Club</span><span class="info-value">...</span></div>
+        </section>
+    </div>
+
+    <script>
+        const PROFILE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQs8UENJBTpcWTpIB5LQNxwAuIP0Jo4ivqlEy8pFJnxERX_wO1izopTveqI_tmBsIvvm1dNzdXJq7mh/pub?gid=0&single=true&output=csv';
+
+        async function loadProfile() {
+            try {
+                const response = await fetch(PROFILE_CSV_URL);
+                const text = await response.text();
+
+                const rows = text.trim().split('\n').map(row => 
+                    row.split(',').map(cell => cell.replace(/^"(.*)"$/, '$1').trim())
+                );
+
+                const data = {};
+                rows.forEach(row => {
+                    if (row[0] && row[1]) {
+                        data[row[0].toLowerCase()] = row[1];
+                    }
+                });
+
+                if (data['name']) document.getElementById('playerName').innerText = data['name'];
+                if (data['number']) document.getElementById('playerJersey').innerText = data['number'];
+                if (data['position']) document.getElementById('playerRole').innerText = data['position'];
+
+                document.getElementById('statsGrid').innerHTML = `
+                    <div class="stat-card">
+                        <div class="stat-value">${data['goals'] || 0}</div>
+                        <div class="stat-label">Goals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${data['tackles'] || 0}</div>
+                        <div class="stat-label">Tackles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${data['nutmegs'] || 0}</div>
+                        <div class="stat-label">Nutmegs</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">${data['penalties'] || 0}</div>
+                        <div class="stat-label">Penalties</div>
+                    </div>
+                `;
+
+                document.getElementById('infoGrid').innerHTML = `
+                    <div class="info-card">
+                        <span class="info-label">Preferred Foot</span>
+                        <span class="info-value">${data['preferred foot'] || '-'}</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Appearances</span>
+                        <span class="info-value">${data['appearances'] || '-'}</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Assists</span>
+                        <span class="info-value">${data['assists'] || 0}</span>
+                    </div>
+                    <div class="info-card">
+                        <span class="info-label">Joined Club</span>
+                        <span class="info-value">${data['joined'] || '-'}</span>
+                    </div>
+                `;
+
+            } catch (err) {
+                console.error("Failed to fetch profile CSV:", err);
+            }
+        }
+
+        loadProfile();
+    </script>
+</body>
+</html>
